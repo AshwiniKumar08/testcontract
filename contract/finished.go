@@ -75,7 +75,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 
 // write - invoke function to write key/value pair
 func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	var key, value string
+	var key string
 	var err error
 	fmt.Println("running write()")
 
@@ -93,7 +93,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	
 	Batchid: args[3],
 	
-}
+	}
 	bytes, err := json.Marshal(product)
 	
 	if err != nil {
@@ -102,7 +102,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	
 	return nil, errors.New("Error marshaling product")
 	
-}
+	}
 
 	err = stub.PutState(product.Batchid, bytes)
 
@@ -110,16 +110,10 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 
 	return nil, err
 
-}
+	}
 
-return nil, nil
-	//key = args[0] //rename for funsies
-	//value = args[1]
-	//err = stub.PutState(key, []byte(value)) //write the variable into the chaincode state
-	//if err != nil {
-	//	return nil, err
-	//}
-	//return nil, nil
+	return nil, nil
+	
 }
 
 // read - query function to read key/value pair
