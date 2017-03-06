@@ -106,7 +106,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	return nil, errors.New("Error marshaling product")
 	
 	}
-fmt.Println("batchId is : " product.Batchid)
+fmt.Println("batchId is : " + product.Batchid)
 fmt.Println("key is : " + key)
 	err = stub.PutState(key, bytes)
 
