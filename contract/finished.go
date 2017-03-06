@@ -85,6 +85,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	}
 	
 	key := args[0]
+	values := args[1]
 	
 	//product := Product{
 	
@@ -109,7 +110,7 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 //fmt.Println("batchId is : " + product.Batchid)
 fmt.Println("key is : " + key)
 	//err = stub.PutState(key, bytes)
-	err = stub.PutState(key, args[1])
+	err = stub.PutState(key, values)
 	if err != nil {
 
 	return nil, err
