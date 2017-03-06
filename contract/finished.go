@@ -122,7 +122,7 @@ fmt.Println("key is : " key)
 
 // read - query function to read key/value pair
 func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	var key, jsonResp string
+	//var key, jsonResp string
 	var err error
 
 	if len(args) != 1 {
