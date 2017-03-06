@@ -8,6 +8,7 @@ import (
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
 
+
 type Product struct {
 
 Name   string  `json:"name"`
