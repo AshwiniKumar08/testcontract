@@ -53,6 +53,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	if function == "init" {
 		return t.Init(stub, "init", args)
 	} else if function == "write" {
+	fmt.Println("calling wrrite Method")
 		return t.write(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function)
@@ -75,13 +76,15 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 
 // write - invoke function to write key/value pair
 func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	//var key, value string
+	var key string
 	var err error
 	fmt.Println("running write()")
 
 	if len(args) != 4 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4. name of the key and value to set")
 	}
+	
+	key := args[3]
 	
 	product := Product{
 	
@@ -103,8 +106,9 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	return nil, errors.New("Error marshaling product")
 	
 	}
-
-	err = stub.PutState(product.Batchid, bytes)
+fmt.Println("batchId is : " product.Batchid)
+fmt.Println("key is : " key)
+	err = stub.PutState(key, bytes)
 
 	if err != nil {
 
