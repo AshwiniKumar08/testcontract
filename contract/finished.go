@@ -8,6 +8,7 @@ import (
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
 
+
 type Product struct {
 
 Name   string  `json:"name"`
@@ -76,41 +77,40 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 
 // write - invoke function to write key/value pair
 func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	var key,values string
+	var key string
 	var err error
 	fmt.Println("running write()")
 
-	if len(args) != 2 {
+	if len(args) != 4 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 4. name of the key and value to set")
 	}
 	
-	key = args[0]
-	values = args[1]
+	key := args[3]
 	
-	//product := Product{
+	product := Product{
 	
-	//Name:   args[0],
+	Name:   args[0],
 	
-	//Qunatity: args[1],
+	Qunatity: args[1],
 	
-	//Owner: args[2],
+	Owner: args[2],
 	
-	//Batchid: args[3],
+	Batchid: args[3],
 	
-	//}
-	//bytes, err := json.Marshal(product)
+	}
+	bytes, err := json.Marshal(product)
 	
-	//if err != nil {
+	if err != nil {
 	
-	//fmt.Println("Error marshaling product")
+	fmt.Println("Error marshaling product")
 	
-	//return nil, errors.New("Error marshaling product")
+	return nil, errors.New("Error marshaling product")
 	
-	//}
-//fmt.Println("batchId is : " + product.Batchid)
+	}
+fmt.Println("batchId is : " + product.Batchid)
 fmt.Println("key is : " + key)
-	//err = stub.PutState(key, bytes)
-	err = stub.PutState(key, values)
+	err = stub.PutState(key, bytes)
+
 	if err != nil {
 
 	return nil, err
