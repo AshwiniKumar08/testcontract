@@ -76,7 +76,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 
 // write - invoke function to write key/value pair
 func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	//var key string
+	var key,values string
 	var err error
 	fmt.Println("running write()")
 
@@ -84,8 +84,8 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 		return nil, errors.New("Incorrect number of arguments. Expecting 4. name of the key and value to set")
 	}
 	
-	key := args[0]
-	values := args[1]
+	key = args[0]
+	values = args[1]
 	
 	//product := Product{
 	
