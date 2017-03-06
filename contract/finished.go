@@ -33,14 +33,14 @@ func main() {
 
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	//if len(args) != 1 {
-	//	return nil, errors.New("Incorrect number of arguments. Expecting 1")
-	//}
+	if len(args) != 1 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 1")
+	}
 
-	//err := stub.PutState("hello_world", []byte(args[0]))
-	//if err != nil {
-	//	return nil, err
-	//}
+	err := stub.PutState("hello_world", []byte(args[0]))
+	if err != nil {
+		return nil, err
+	}
 
 	return nil, nil
 }
@@ -122,7 +122,7 @@ fmt.Println("key is : " + key)
 
 // read - query function to read key/value pair
 func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	//var key, jsonResp string
+	var jsonResp string
 	var err error
 
 	if len(args) != 1 {
