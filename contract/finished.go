@@ -146,20 +146,20 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 	var err error
 	var cottonLotId string
 
-	fmt.Println("Initializing Cattle Creation")
+	fmt.Println("Cotton Creation")
 
 	weight, err := strconv.ParseFloat(args[5], 64)
 
-	if args[6] != FARMER { // Only the farmer can create a cattle
-		return nil, errors.New(fmt.Sprintf("Permission Denied. Create Cattle. %v === %v", args[6], FARMER))
-	}
+	//if args[6] != FARMER { // Only the farmer can create a cattle
+	//	return nil, errors.New(fmt.Sprintf("Permission Denied. Create Cattle. %v === %v", args[6], FARMER))
+	//}
 
 	bytes, err := stub.GetState(args[3])
 
 	if bytes != nil {
 		err = json.Unmarshal(bytes, &cottonLotId)
 
-		if cattletag != "" {
+		if cottonLotId != "" {
 			return nil, errors.New(fmt.Sprintf("Cotton Lot Already Present"))
 		}
 	}
