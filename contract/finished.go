@@ -148,7 +148,7 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 
 	fmt.Println("Cotton Creation")
 
-	weight, err := strconv.ParseFloat(args[5], 64)
+	//weight, err := strconv.ParseFloat(args[5], 64)
 
 	//if args[6] != FARMER { // Only the farmer can create a cattle
 	//	return nil, errors.New(fmt.Sprintf("Permission Denied. Create Cattle. %v === %v", args[6], FARMER))
