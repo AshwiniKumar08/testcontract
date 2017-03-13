@@ -119,17 +119,17 @@ type Farmer struct {
 }
 
 type Cotton struct {
-	LotId	string  `json:"lotId"`
-	Quantity	string  `json:"quatity"`
-	MaterialType	string  `json:"materialType"`
-	WaterConsumption	string  `json:"waterConsumption"`
-	ChemicalUsed	string  `json:"chemicalUsed"`
-	ContainerType	string `json:"containerType"`
-	FarmCode	string  `json:"farmCode"`
-	FarmStatus      string  `json:"farmStatus"`
-	FarmName	string  `json:"farmName"`
-	FarmNumber	string  `json:"farmNumber"`
-	FarmType	string  `json:"farmType"`
+	LotId            string  `json:"lotId"`
+	Quantity         string  `json:"quatity"`
+	MaterialType     string  `json:"materialType"`
+	WaterConsumption string  `json:"waterConsumption"`
+	ChemicalUsed     string  `json:"chemicalUsed"`
+	ContainerType    string  `json:"containerType"`
+	FarmCode         string  `json:"farmCode"`
+	FarmStatus       string  `json:"farmStatus"`
+	FarmName         string  `json:"farmName"`
+	FarmNumber       string  `json:"farmNumber"`
+	FarmType         string  `json:"farmType"`
 }
 
 
@@ -207,14 +207,14 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 
 	cottons.Cotton = append(cottons.Cotton, cottonCorp.LotId)
 
-	fmt.Println("cottons is : " + cottons)
-
 	bytes, err = json.Marshal(cottons)
+
+	fmt.Println(bytes)
 
 	err = stub.PutState("cottonids", bytes)
 
 	if err != nil {
-		return nil, errors.New("Unable to put the state")
+		return nil, errors.New("Unable to put the cottonids state")
 	}
 	// Create Empty Blockheader list
 	//var blank []string
