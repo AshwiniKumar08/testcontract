@@ -259,7 +259,7 @@ func (t *SimpleChaincode) getAllCotton(stub shim.ChaincodeStubInterface, args []
 	var jsonResp string
 	var err error
 
-	valAsbytes, err := stub.GetState("cattleids")
+	valAsbytes, err := stub.GetState("cottonids")
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for cottonids \"}"
 		return nil, errors.New(jsonResp)
