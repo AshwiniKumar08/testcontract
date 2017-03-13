@@ -146,7 +146,7 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 	var err error
 	var cottonLotId string
 
-	fmt.Println("Cotton Creation")
+	fmt.Println("createCotton Starts")
 
 	//weight, err := strconv.ParseFloat(args[5], 64)
 
@@ -154,7 +154,7 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 	//	return nil, errors.New(fmt.Sprintf("Permission Denied. Create Cattle. %v === %v", args[6], FARMER))
 	//}
 
-	bytes, err := stub.GetState(args[3])
+	bytes, err := stub.GetState(args[0])
 
 	if bytes != nil {
 		err = json.Unmarshal(bytes, &cottonLotId)
@@ -207,6 +207,8 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 
 	cottons.Cotton = append(cottons.Cotton, cottonCorp.LotId)
 
+	fmt.Println("cottons is : " + cottons)
+
 	bytes, err = json.Marshal(cottons)
 
 	err = stub.PutState("cottonids", bytes)
@@ -237,6 +239,7 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 	//bytes, err = json.Marshal(cattleheaders)
 	//err = stub.PutState(cattletaghdr, bytes)
 
+	fmt.Println("createCotton Ends")
 	return nil, nil
 }
 
@@ -244,6 +247,9 @@ func (t *SimpleChaincode) createCotton(stub shim.ChaincodeStubInterface, args []
 func (t *SimpleChaincode) getCotton(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, jsonResp string
 	var err error
+	
+	fmt.Println("getCotton start")
+	
 	key = args[0]
 	valAsbytes, err := stub.GetState(key)
 	if err != nil {
@@ -251,6 +257,7 @@ func (t *SimpleChaincode) getCotton(stub shim.ChaincodeStubInterface, args []str
 		return nil, errors.New(jsonResp)
 	}
 
+	fmt.Println("getCotton Ends")
 	return valAsbytes, nil
 }
 
